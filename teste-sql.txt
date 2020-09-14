@@ -1,0 +1,20 @@
+Seu nome:
+
+1)SELECT MIN(data_lancamento) FROM en_filme;
+
+2)select en_cliente.id_cliente, en_cliente.nome, count(en_aluguel.id_aluguel) as quantidade
+  from en_cliente
+  inner join en_aluguel on (en_aluguel.id_cliente = en_cliente.id_cliente)
+  group by en_cliente.id_cliente, en_cliente.nome
+  order by quantidade
+
+3)select
+  	en_cliente.nome, count(en_aluguel.id_aluguel) as quantidade, sum(en_aluguel.valor) as total
+  from
+  	en_aluguel
+  	inner join en_cliente on (en_aluguel.id_cliente = en_cliente.id_cliente)
+  where
+  	data_aluguel >= '2020-01-01'
+  	and data_aluguel  <= '2020-12-31'
+  	group by en_cliente.nome
+
